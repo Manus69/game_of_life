@@ -1,4 +1,5 @@
 #include "Gui.h"
+#include <SDL2/SDL_image.h>
 
 Gui Gui_init(const char * w_name, int width, int height)
 {
@@ -15,19 +16,28 @@ Gui Gui_init(const char * w_name, int width, int height)
         SDL_WINDOW_SHOWN
     );
     gui.rendr = SDL_CreateRenderer(gui.window, -1, 0);
+    gui.texture = IMG_LoadTexture(gui.rendr, GUI_IMG);
+    gui.t_rect = (SDL_Rect)
+    {
+        .w = width / 3,
+        .h = height / 4,
+        .x = 0,
+        .y = height - height / 4,
+    };
 
     return gui;
 }
 
 int Gui_check(const Gui * gui)
 {
-    if (gui->window && gui->rendr) return GUI_STATUS_OK;
+    if (gui->window && gui->rendr && gui->texture) return GUI_STATUS_OK;
 
     return GUI_STATUS_FUCKED;
 }
 
 void Gui_kill(Gui * gui)
 {
+    SDL_DestroyTexture(gui->texture);
     SDL_DestroyRenderer(gui->rendr);
     SDL_DestroyWindow(gui->window);
     SDL_Quit();
@@ -55,5 +65,6 @@ void Gui_draw_square(Gui * gui, int x, int y, int size, SDL_Color color)
 
 void Gui_render(Gui * gui)
 {
+    SDL_RenderCopy(gui->rendr, gui->texture, NULL, & gui->t_rect);
     SDL_RenderPresent(gui->rendr);
 }

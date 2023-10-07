@@ -5,6 +5,8 @@
 
 #define GUI_STATUS_FUCKED   -1
 #define GUI_STATUS_OK       0
+#define GUI_IMG             "test.png"
+
 
 typedef struct Gui Gui;
 
@@ -12,6 +14,8 @@ struct Gui
 {
     SDL_Window *    window;
     SDL_Renderer *  rendr;
+    SDL_Texture *   texture;
+    SDL_Rect        t_rect;
 };
 
 Gui     Gui_init(const char * w_name, int width, int height);

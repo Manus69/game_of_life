@@ -2,9 +2,9 @@
 #include <stdlib.h>
 
 #define NAME        "Game of Life"
-#define RES_DEFAULT 1000
+#define RES_DEFAULT 1200
 #define PPC         (RES_DEFAULT / BSIZE)
-#define TFT         (1000 / 60)
+#define TFT         (1000 / 30)
 #define DELAY       200
 #define PAUSE_BTN   SDLK_SPACE
 #define CLEAR_BTN   SDLK_c
@@ -124,6 +124,8 @@ void Game_run(Game * game)
         _process_input(game);
         if (! game->running) return ;
         if (! game->paused) SDL_Delay(DELAY);
+        if (game->paused) SDL_Delay(TFT);
+        
         _next_board(game);
         _update_screen(game);
     }

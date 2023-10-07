@@ -3,7 +3,7 @@ cc := gcc
 flags_base := -std=c2x -Wall -Wextra -fsanitize=address
 flags_dbg := $(flags_base) -g
 flags_release := $(flags_base) -O3 -flto
-flags_link := -lSDL2
+flags_link := -lSDL2 -lSDL2_image
 flags := $(flags_dbg)
 
 obj_dir := obj/
