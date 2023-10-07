@@ -68,14 +68,16 @@ static void _process_input(Game * game)
 {
     SDL_Event event;
 
-    SDL_PollEvent(& event);
-    if (event.type == SDL_QUIT) return _stop(game);
-    if (event.type == SDL_MOUSEBUTTONDOWN && game->paused) return _click(game);
-    if (event.type == SDL_KEYDOWN)
+    while (SDL_PollEvent(& event))
     {
-        if (event.key.keysym.sym == QUIT_BTN) return _stop(game);
-        if (event.key.keysym.sym == PAUSE_BTN) return _pause_toggle(game);
-        if (event.key.keysym.sym == CLEAR_BTN) return Board_cell_kill_all(& game->board);
+        if (event.type == SDL_QUIT) return _stop(game);
+        if (event.type == SDL_MOUSEBUTTONDOWN && game->paused) return _click(game);
+        if (event.type == SDL_KEYDOWN)
+        {
+            if (event.key.keysym.sym == QUIT_BTN) return _stop(game);
+            if (event.key.keysym.sym == PAUSE_BTN) return _pause_toggle(game);
+            if (event.key.keysym.sym == CLEAR_BTN) return Board_cell_kill_all(& game->board);
+        }
     }
 }
 
