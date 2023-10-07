@@ -77,7 +77,6 @@ static void _process_input(Game * game)
         if (event.key.keysym.sym == PAUSE_BTN) return _pause_toggle(game);
         if (event.key.keysym.sym == CLEAR_BTN) return Board_cell_kill_all(& game->board);
     }
-    if (! game->paused) SDL_Delay(DELAY);
 }
 
 static void _next_board(Game * game)
@@ -122,7 +121,7 @@ void Game_run(Game * game)
     {
         _process_input(game);
         if (! game->running) return ;
-
+        if (! game->paused) SDL_Delay(DELAY);
         _next_board(game);
         _update_screen(game);
     }
