@@ -5,8 +5,7 @@
 
 #define GUI_STATUS_FUCKED   -1
 #define GUI_STATUS_OK       0
-#define GUI_IMG             "test.png"
-
+#define GUI_IMG             "ass/test.png"
 
 typedef struct Gui Gui;
 

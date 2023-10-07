@@ -1,6 +1,8 @@
 #ifndef BOARD_H
 #define BOARD_H
 
+#include <stdbool.h>
+
 #define BSIZE   100
 #define DEAD    0
 #define ALIVE   1
