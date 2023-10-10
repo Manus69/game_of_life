@@ -6,6 +6,8 @@ Gui Gui_init(const char * w_name, int width, int height)
     Gui gui = {};
 
     if (SDL_Init(SDL_INIT_EVERYTHING) < 0) return gui;
+    if (! IMG_Init(IMG_INIT_PNG)) return gui;
+    
     gui.window = SDL_CreateWindow
     (
         w_name,
